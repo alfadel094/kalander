@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id                Int      @id @default(autoincrement())
+  groupId           String?
+  title             String
+  start             DateTime
+  end               DateTime
+  description       String
+  icon              String
+  color             String
+  className         String
+  doneBy            String
+  state             String
+  interval          String?
+  repeatIntervalFor Int?
+  comments          String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([groupId])
+}
